@@ -1,6 +1,7 @@
 package com.springboot.blogapp.controller;
 
 import com.springboot.blogapp.payload.PostDto;
+import com.springboot.blogapp.payload.PostResponse;
 import com.springboot.blogapp.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class PostController {
     }
 
     @GetMapping
-    public List<PostDto> getAllPosts(
+    public PostResponse getAllPosts(
             @RequestParam(value = "pageNo",defaultValue = "0",required = false) int pageNo,
             @RequestParam(value = "pageSize",defaultValue = "2",required = false)int pageSize
     ){
