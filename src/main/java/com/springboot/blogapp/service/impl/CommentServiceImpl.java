@@ -8,7 +8,9 @@ import com.springboot.blogapp.payload.PostDto;
 import com.springboot.blogapp.repository.CommentRepository;
 import com.springboot.blogapp.repository.PostRepository;
 import com.springboot.blogapp.service.CommentService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CommentServiceImpl implements CommentService {
 
     private CommentRepository commentRepository;
