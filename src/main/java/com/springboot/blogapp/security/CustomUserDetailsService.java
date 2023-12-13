@@ -1,4 +1,4 @@
-package com.springboot.blogapp.service.impl;
+package com.springboot.blogapp.security;
 
 import com.springboot.blogapp.entity.User;
 import com.springboot.blogapp.repository.UserRepository;
