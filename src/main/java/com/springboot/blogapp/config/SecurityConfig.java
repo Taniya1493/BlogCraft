@@ -51,6 +51,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
 //                        .anyRequest().authenticated()
                                 .requestMatchers(HttpMethod.GET,"/api/**").permitAll()
+//                                .requestMatchers(HttpMethod.POST,"/api/**").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
                                 .anyRequest().authenticated()
                 ).exceptionHandling(exception -> exception
@@ -60,6 +61,8 @@ public class SecurityConfig {
                 );
 //                .httpBasic(Customizer.withDefaults());
         http.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+
         return http.build();
     }
 
