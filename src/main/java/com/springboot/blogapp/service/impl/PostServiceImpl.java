@@ -1,9 +1,11 @@
 package com.springboot.blogapp.service.impl;
 
+import com.springboot.blogapp.entity.Category;
 import com.springboot.blogapp.entity.Post;
 import com.springboot.blogapp.exception.ResourceNotFoundException;
 import com.springboot.blogapp.payload.PostDto;
 import com.springboot.blogapp.payload.PostResponse;
+import com.springboot.blogapp.repository.CategoryRepository;
 import com.springboot.blogapp.repository.PostRepository;
 import com.springboot.blogapp.service.PostService;
 import org.modelmapper.ModelMapper;
@@ -24,17 +26,25 @@ public class PostServiceImpl implements PostService {
 
     private ModelMapper mapper;
 
-    public PostServiceImpl(PostRepository postRepository,ModelMapper mapper) {
+    private CategoryRepository categoryRepository;
+
+    public PostServiceImpl(PostRepository postRepository,ModelMapper mapper,
+                           CategoryRepository categoryRepository) {
         this.postRepository = postRepository;
         this.mapper=mapper;
+        this.categoryRepository=categoryRepository;
     }
 
 
     @Override
     public PostDto createPost(PostDto postDto) {
 
+        Category category=categoryRepository.findById(postDto.getCategoryId())
+                .orElseThrow(() -> new ResourceNotFoundException("Category","id", postDto.getCategoryId()));
+
         //convert Dto to entity
         Post post=convertDtoToEntity(postDto);
+        post.setCategory(category);
 
         Post newpost=postRepository.save(post);
 
@@ -82,9 +92,14 @@ public class PostServiceImpl implements PostService {
     public PostDto updatePost(PostDto postDto, Long id) {
         Post post=postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post","id",id));
 
+        Category category=categoryRepository.findById(postDto.getCategoryId())
+                .orElseThrow(() -> new ResourceNotFoundException("Category","id", postDto.getCategoryId()));
+
+
         post.setTitle(postDto.getTitle());
         post.setDescription(postDto.getDescription());
         post.setContent(postDto.getContent());
+        post.setCategory(category);
 
         Post updatedPost=postRepository.save(post);
         return convertEntityToDto(updatedPost);
