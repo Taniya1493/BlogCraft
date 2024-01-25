@@ -53,6 +53,8 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET,"/api/**").permitAll()
 //                                .requestMatchers(HttpMethod.POST,"/api/**").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/swagger-ui/**").permitAll()
+                                .requestMatchers("/v3/api-docs/**").permitAll()
                                 .anyRequest().authenticated()
                 ).exceptionHandling(exception -> exception
                         .authenticationEntryPoint(jwtAuthenticationEntryPoint)
