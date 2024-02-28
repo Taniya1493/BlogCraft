@@ -1,14 +1,12 @@
 package com.springboot.blogapp.payload;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class JwtAuthResponse {
 
     private String accessToken;

@@ -57,7 +57,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String register(RegisterDto registerDto) {
         //add check for user already exists in database
-        if(userRepository.existsByUsername(registerDto.getUsername())){
+        if(userRepository.existsByUsername(registerDto.getEmail())){
             throw new BlogAPIException(HttpStatus.BAD_REQUEST,"Username is already exists!");
         }
 
@@ -73,7 +73,7 @@ public class AuthServiceImpl implements AuthService {
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
 
         Set<Role> roles=new HashSet<>();
-        Role userRole=roleRepository.findByName("USER").get();
+        Role userRole=roleRepository.findByName("ROLE_USER").get();
         roles.add(userRole);
         user.setRoles(roles);
 
