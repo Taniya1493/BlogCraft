@@ -12,7 +12,7 @@ Features:-
 Installation:-
 - Make sure you have Java JDK and Maven installed on your machine.
 - Clone this repository:
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/Taniya1493/springboot-blog-application.git
 - Navigate to the project directory:
 cd springboot-blog-application
 - Build the project using Maven:
