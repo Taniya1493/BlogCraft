@@ -8,6 +8,8 @@ Features:-
 2.Commenting on blog posts 
 3.Categorization of blog posts 
 4.User authentication with login and signup functionality using JWT
+5.Exception Handling
+6.Security
 
 Installation:-
 Make sure you have Java JDK and Maven installed on your machine.
